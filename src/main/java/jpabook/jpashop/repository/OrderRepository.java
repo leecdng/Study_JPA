@@ -7,6 +7,7 @@ import jpabook.jpashop.domain.OrderStatus;
 import jpabook.jpashop.domain.QMember;
 import jpabook.jpashop.domain.QOrder;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
@@ -21,7 +22,6 @@ import static jpabook.jpashop.domain.QOrder.order;
 public class OrderRepository {
 
     public final EntityManager em;
-    public final JPAQuery<Order> query;
 
     public void save(Order order){
         em.persist(order);
@@ -39,6 +39,8 @@ public class OrderRepository {
 //                .setParameter("name", orderSearch.getMemberName())
 //                .setMaxResults(1000)
 //                .getResultList();
+        JPAQuery<Order> query = new JPAQuery<>(em);
+
         QOrder order = QOrder.order;
         QMember member = QMember.member;
 
