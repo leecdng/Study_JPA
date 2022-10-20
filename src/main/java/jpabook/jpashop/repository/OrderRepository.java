@@ -65,6 +65,6 @@ public class OrderRepository {
         if(!StringUtils.hasText(nameCond)){
             return null;
         }
-        return member.name.like(nameCond);
+        return member.name.contains(nameCond);
     }
 }
